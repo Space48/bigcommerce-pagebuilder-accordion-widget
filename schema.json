@@ -1,0 +1,163 @@
+{
+  "name": "Accordion",
+  "template": "<div class=\\\"pb-accordion\\\"> {{#each items}} <div class=\\\"pb-accordion-item\\\"> <input class=\\\"pb-accordion-control\\\" type=\\\"checkbox\\\" id=\\\"check-{{@index}}\\\"> <label class=\\\"pb-accordion-header\\\" for=\\\"check-{{@index}}\\\">{{header}}</label> <div class=\\\"pb-accordion-content\\\"> {{{content}}} </div> </div> {{/each}} </div> <style> .pb-accordion { {{#if boxRoundedCorners}} border-radius: 8px; {{/if}} } .pb-accordion-item { overflow: hidden; } .pb-accordion-header { border: 1px solid {{boxBorderColor}}; border-top: 0; color: {{headingColor}}; display: flex; justify-content: space-between; padding: 1em; font-weight: 700; cursor: pointer; text-align: {{headingAlignment.horizontal}} } .pb-accordion-header:hover { color: {{headingHoverColor}}; } .pb-accordion-header::after { content: \\\"\\\\276F\\\"; width: 1em; height: 1.5em; text-align: center; transition: all .35s; } .pb-accordion-item:first-child .pb-accordion-header { border-top: 1px solid {{headingColor}}; } .pb-accordion-content { border: 1px solid {{borderColor}}; border-top: 0; max-height: 0; padding: 0 1em; color: {{contentColor}}; background: white; transition: all .35s; text-align: {{contentAlignment.horizontal}} } .pb-accordion-content a { color: {{contentLinkColor}} } .pb-accordion-content a:hover { color: {{contentLinkHoverColor}} } .pb-accordion-control { position: absolute; opacity: 0; z-index: -1; } .pb-accordion-control:checked + .pb-accordion-header::after { transform: rotate(90deg); } .pb-accordion-control:checked ~ .pb-accordion-content { max-height: 100vh; padding: 1em; } .pb-accordion-control:not(:checked) ~ .pb-accordion-content { border: 0; } </style>",
+  "schema": [
+    {
+      "type": "tab",
+      "label": "Design",
+      "sections": [
+        {
+          "settings": [
+            {
+              "type": "element",
+              "label": "Box style",
+              "id": "box",
+              "typeMeta": {
+                "controls": {
+                  "advanced": {
+                    "label": "Box style",
+                    "settings": [
+                      {
+                        "type": "color",
+                        "label": "Border color",
+                        "id": "borderColor",
+                        "default": "#e5e5e5"
+                      },
+                      {
+                        "type": "select",
+                        "label": "Rounded Corners",
+                        "id": "roundedCorners",
+                        "default": 0,
+                        "typeMeta": {
+                          "selectOptions": [
+                            {
+                              "label": "No",
+                              "value": 0
+                            },
+                            {
+                              "label": "Yes",
+                              "value": 1
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "type": "element",
+              "label": "Heading style",
+              "id": "heading",
+              "typeMeta": {
+                "controls": {
+                  "advanced": {
+                    "label": "Heading style",
+                    "settings": [
+                      {
+                        "type": "alignment",
+                        "label": "Alignment",
+                        "id": "alignment",
+                        "default": {
+                          "horizontal": "left"
+                        },
+                        "typeMeta": {
+                          "display": "horizontal"
+                        }
+                      },
+                      {
+                        "type": "color",
+                        "label": "Text color",
+                        "id": "color",
+                        "default": "#333333"
+                      },
+                      {
+                        "type": "color",
+                        "label": "Hover color",
+                        "id": "hoverColor",
+                        "default": "#757575"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "type": "element",
+              "label": "Content style",
+              "id": "content",
+              "typeMeta": {
+                "controls": {
+                  "advanced": {
+                    "label": "Content style",
+                    "settings": [
+                      {
+                        "type": "alignment",
+                        "label": "Alignment",
+                        "id": "alignment",
+                        "default": {
+                          "horizontal": "left"
+                        },
+                        "typeMeta": {
+                          "display": "horizontal"
+                        }
+                      },
+                      {
+                        "type": "color",
+                        "label": "Text color",
+                        "id": "color",
+                        "default": "#2c3e50"
+                      },
+                      {
+                        "type": "color",
+                        "label": "Link color",
+                        "id": "linkColor",
+                        "default": "#333333"
+                      },
+                      {
+                        "type": "color",
+                        "label": "Link Hover color",
+                        "id": "linkHoverColor",
+                        "default": "#757575"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "array",
+      "label": "Accordion",
+      "id": "items",
+      "defaultCount": 1,
+      "entryLabel": "Tab",
+      "schema": [
+        {
+          "type": "tab",
+          "label": "Tab",
+          "sections": [
+            {
+              "settings": [
+                {
+                  "label": "Header",
+                  "type": "input",
+                  "id": "header"
+                },
+                {
+                  "label": "Content",
+                  "type": "code",
+                  "id": "content"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

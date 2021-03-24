@@ -1,0 +1,75 @@
+<div class=\"pb-accordion-{{_.id}}\">
+    {{#each items}}
+    <div class=\"pb-accordion-item\">
+        <input class=\"pb-accordion-control\" type=\"checkbox\" id=\"check-{{../_.id}}-{{@index}}\">
+        <label class=\"pb-accordion-header\" for=\"check-{{../_.id}}-{{@index}}\">{{header}}</label>
+        <div class=\"pb-accordion-content\">
+            {{{content}}}
+        </div>
+    </div>
+    {{/each}}
+</div>
+<style>
+.pb-accordion-{{_.id}} {
+{{#if box.roundedCorners '===' '1'}}
+    border-radius: 8px;
+{{/if}}
+    border: 1px solid {{#if box.borderColor }}{{box.borderColor}}{{else}}#e5e5e5{{/if}};
+    margin-bottom: 30px;
+}
+
+.pb-accordion-{{_.id}} .pb-accordion-item {
+    border-bottom: 1px solid {{#if box.borderColor }}{{box.borderColor}}{{else}}#e5e5e5{{/if}};
+    overflow: hidden;
+}
+.pb-accordion-{{_.id}} .pb-accordion-header {
+    color: {{#if heading.color}}{{heading.color}}{{else}}#333333{{/if}};
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.pb-accordion-{{_.id}} .pb-accordion-header:hover {
+    color: {{#if heading.hoverColor}}{{heading.hoverColor}}{{else}}#757575{{/if}};
+}
+.pb-accordion-header::after {
+    content: \"\\276F\";
+    width: 1em;
+    height: 1.5em;
+    text-align: center;
+    transition: all .35s;
+}
+.pb-accordion-item:last-child  {
+    border: 0;
+}
+.pb-accordion-{{_.id}} .pb-accordion-content {
+    max-height: 0;
+    padding: 0 1em;
+    color: {{#if content.color}}{{content.color}}{{else}}#2c3e50{{/if}};
+    transition: all .35s;
+}
+
+.pb-accordion-{{_.id}} .pb-accordion-content a {
+    color: {{#if content.linkColor}}{{content.linkColor}}{{else}}#333333{{/if}};
+}
+
+.pb-accordion-{{_.id}} .pb-accordion-content a:hover {
+    color: {{#if content.linkHoverColor}}{{content.linkHoverColor}}{{else}}#757575{{/if}};
+}
+
+.pb-accordion-control {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+
+.pb-accordion-control:checked + .pb-accordion-header::after {
+    transform: rotate(90deg);
+}
+.pb-accordion-control:checked ~ .pb-accordion-content {
+    max-height: 100vh;
+    padding: 1em;
+}
+</style>
